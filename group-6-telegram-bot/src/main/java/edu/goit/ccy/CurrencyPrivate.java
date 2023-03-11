@@ -1,4 +1,4 @@
-package edu.goit.button;
+package edu.goit.ccy;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

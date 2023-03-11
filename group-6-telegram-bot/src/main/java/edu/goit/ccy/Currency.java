@@ -1,4 +1,4 @@
-package edu.goit.button;
+package edu.goit.ccy;
 
 import lombok.Data;
 
@@ -10,9 +10,4 @@ public class Currency {
    private String base_ccy;
    private BigDecimal buy;
    private BigDecimal sale;
-
-   public enum ALL_CCY {
-      USD,
-      EUR
-   }
 }

@@ -1,6 +1,7 @@
 package edu.goit.telegram;
 
-import edu.goit.button.CurrencyPrivate;
+import edu.goit.ccy.CCY;
+import edu.goit.ccy.CurrencyPrivate;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -8,14 +9,17 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Objects;
 
+import static edu.goit.button.Button.button;
+
+
 public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
+
+    public static final String NAME = "WeWatchTheCurrencies_Bot";
+    public static final String TOKEN = "6185013864:AAFam0RvGuVJ7YV0U7CnBLuwmInhv7zC1aw";
 
     CurrencyTelegramBot() {
         register(new StartCommand());
     }
-
-    public static final String NAME = "WeWatchTheCurrencies_Bot";
-    public static final String TOKEN = "6185013864:AAFam0RvGuVJ7YV0U7CnBLuwmInhv7zC1aw";
 
     @Override
     public String getBotUsername() {
@@ -30,19 +34,32 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
     @Override
     @SneakyThrows
     public void processNonCommandUpdate(Update update) {
-        if (update.hasCallbackQuery()) { //РЅР°Р¶Р°Р»Рё Р»Рё РЅР° РєРЅРѕРїРєСѓ
+        if (update.hasCallbackQuery()) {
             String cb = update.getCallbackQuery().getData();
-            long ID =  update.getCallbackQuery().getMessage().getChatId();
+            final long ID = update.getCallbackQuery().getMessage().getChatId();
             SendMessage massage = new SendMessage();
 
-            if (cb.equals("РћС‚СЂРёРјР°С‚Рё С–РЅС„РѕСЂРјР°С†С–СЋ \uD83D\uDCB8")) {
-                massage.setText(Objects.requireNonNull(CurrencyPrivate.getCurrency()));
-                massage.setChatId(ID);
-                execute(massage);
-            } else if (cb.equals("Р—Р±С–Р»СЊС€РёС‚Рё РјРѕР¶Р»РёРІРѕСЃС‚С– \uD83D\uDEE0")) {
-                massage.setChatId(ID);
-                massage.setText("TOOLS");
-                execute(massage);
+            switch (cb) {
+                case "Отримати інформацію \uD83D\uDCB8":
+                    massage.setText(Objects.requireNonNull(CurrencyPrivate.getCurrency()));
+                    massage.setChatId(ID);
+                    execute(massage);
+                    break;
+                case "Збільшити можливості \uD83D\uDEE0":
+                    execute(button.createSettingsButton(massage, ID));
+                    break;
+                case "Кількість знаків після коми":
+                    execute(button.createSettingDelimiterButton(massage, ID));
+                    break;
+                case "Вибір банку":
+                    execute(button.createSettingsBankButton(massage, ID));
+                    break;
+                case "Вибір валюти":
+                    execute(button.createSettingsMoneyButton(massage, ID, CCY.EUR, CCY.USD));
+                    break;
+                case "Час оповіщень":
+                    execute(button.createSettingTimeButton(massage, ID));
+                    break;
             }
         }
         System.out.println("command not exist!");
