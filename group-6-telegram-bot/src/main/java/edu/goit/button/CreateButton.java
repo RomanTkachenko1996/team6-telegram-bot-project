@@ -5,6 +5,6 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import java.util.List;
 
 
-interface CreateButton {
+public interface CreateButton {
     List<InlineKeyboardButton> createButton(String stringOnButton);
 }

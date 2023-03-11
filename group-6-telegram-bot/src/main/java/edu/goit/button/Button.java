@@ -30,8 +30,8 @@ public class Button implements CreateButton {
         message.setChatId(id);
 
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-        rowList.add(createButton("РћС‚СЂРёРјР°С‚Рё С–РЅС„РѕСЂРјР°С†С–СЋ \uD83D\uDCB8"));
-        rowList.add(createButton("РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ \uD83D\uDEE0"));
+        rowList.add(createButton("Отримати інформацію \uD83D\uDCB8"));
+        rowList.add(createButton("Налаштування \uD83D\uDEE0"));
 
         InlineKeyboardMarkup keyboardMarkup = InlineKeyboardMarkup.builder().keyboard(rowList).build();
 
@@ -40,32 +40,32 @@ public class Button implements CreateButton {
     }
 
     @SneakyThrows
-    public SendMessage createSettingsButton(SendMessage massage, long id) {
+    public SendMessage createSettingsButton(SendMessage message, long id) {
 
-        massage.setText("РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ Р±РѕС‚Р°: ");
-        massage.setChatId(id);
+        message.setText("Налаштування бота: ");
+        message.setChatId(id);
 
         List<List<InlineKeyboardButton>> tool = new ArrayList<>();
-        tool.add(createButton("РљС–Р»СЊРєС–СЃС‚СЊ Р·РЅР°РєС–РІ РїС–СЃР»СЏ РєРѕРјРё"));
-        tool.add(createButton("Р’РёР±С–СЂ Р±Р°РЅРєСѓ"));
-        tool.add(createButton("Р’РёР±С–СЂ РІР°Р»СЋС‚Рё"));
-        tool.add(createButton("Р§Р°СЃ РѕРїРѕРІС–С‰РµРЅСЊ"));
-        tool.add(createButton("\uD83D\uDD19 РќР°Р·Р°Рґ"));
+        tool.add(createButton("Кількість знаків після коми"));
+        tool.add(createButton("Вибір банку"));
+        tool.add(createButton("Вибір валюти"));
+        tool.add(createButton("Час оповіщень"));
+        tool.add(createButton("\uD83D\uDD19 Назад"));
 
         InlineKeyboardMarkup keyboardMarkup = InlineKeyboardMarkup.builder().keyboard(tool).build();
 
-        massage.setReplyMarkup(keyboardMarkup);
-        return massage;
+        message.setReplyMarkup(keyboardMarkup);
+        return message;
     }
 
     @SneakyThrows
     public SendMessage createSettingDelimiterButton(SendMessage massage, long id) {
 
-        massage.setText("РЎРєС–Р»СЊРєС– Р·РЅР°РєС–РІ РІРё С…РѕС‡РµС‚Рµ Р±Р°С‡РёС‚Рё РїС–СЃР»СЏ РєРѕРјРё?");
+        massage.setText("Скількі знаків ви хочете бачити після коми?");
         massage.setChatId(id);
 
         List<List<InlineKeyboardButton>> commasList = commas();
-        commasList.add(createButton("\uD83D\uDD19 РќР°Р·Р°Рґ"));
+        commasList.add(createButton("\uD83D\uDD19 Назад"));
 
         InlineKeyboardMarkup keyboardMarkupForCommas = InlineKeyboardMarkup.builder().keyboard(commasList).build();
 
@@ -83,16 +83,16 @@ public class Button implements CreateButton {
     }
 
     @SneakyThrows
-    public SendMessage createSettingsBankButton(SendMessage massage, long id) { // РџРѕРєР° РЅРµ Р±СѓРґСѓ РґРµР»Р°С‚СЊ РјРµС‚РѕРґ РїРѕРґ Enum
+    public SendMessage createSettingsBankButton(SendMessage massage, long id) { // Пока не буду делать метод под Enum
 
-        massage.setText("РЇРєС– Р±Р°РЅРєРё С…РѕС‡РµС‚Рµ РѕР±СЂР°С‚Рё?");
+        massage.setText("Які банки хочете обрати?");
         massage.setChatId(id);
 
         List<List<InlineKeyboardButton>> bank = new ArrayList<>();
         bank.add(createButton("monobank"));
-        bank.add(createButton("РџСЂРёРІР°С‚Р‘Р°РЅРє"));
-        bank.add(createButton("РќР‘РЈ"));
-        bank.add(createButton("\uD83D\uDD19 РќР°Р·Р°Рґ"));
+        bank.add(createButton("ПриватБанк"));
+        bank.add(createButton("НБУ"));
+        bank.add(createButton("\uD83D\uDD19 Назад"));
 
         InlineKeyboardMarkup keyboardMarkupForBank = InlineKeyboardMarkup.builder().keyboard(bank).build();
 
@@ -103,13 +103,13 @@ public class Button implements CreateButton {
     @SneakyThrows
     public <T extends Enum<T>> SendMessage createSettingsMoneyButton(SendMessage massage, long id, Enum<T> EUR, Enum<T> USD) {
 
-        massage.setText("РЇРєСѓ РІР°Р»СЋС‚Сѓ С…РѕС‡РµС‚Рµ РѕР±СЂР°С‚Рё?");
+        massage.setText("Яку валюту хочете обрати?");
         massage.setChatId(id);
 
         List<List<InlineKeyboardButton>> currency = new ArrayList<>();
         currency.add(createButton(EUR.name() + "\uD83D\uDCB6"));
         currency.add(createButton(USD.name() + "\uD83D\uDCB5"));
-        currency.add(createButton("\uD83D\uDD19 РќР°Р·Р°Рґ"));
+        currency.add(createButton("\uD83D\uDD19 Назад"));
 
         InlineKeyboardMarkup keyboardMarkupForCCY = InlineKeyboardMarkup.builder().keyboard(currency).build();
 
@@ -120,15 +120,15 @@ public class Button implements CreateButton {
     @SneakyThrows
     public SendMessage createSettingTimeButton(SendMessage massage, long id) {
 
-        massage.setText("Р’РёР±РµСЂС–С‚СЊ С‡Р°СЃ, С‡РµСЂРµР· СЏРєРёР№ РјРѕР¶Сѓ РІР°Рј Р·РЅРѕРІСѓ СЃРєРёРЅСѓС‚Рё РєСѓСЂСЃ РІР°Р»СЋС‚");
+        massage.setText("Виберіть час, через який можу вам знову скинути курс валют");
         massage.setChatId(id);
 
         List<List<InlineKeyboardButton>> time = new ArrayList<>();
         time.add(appointedTime(9));
-        time.add(appointedTime(13));
-        time.add(appointedTime(17));
-        time.add(createButton("Р’РёРјРєРЅСѓС‚Рё РїРѕРІС–РґРѕРјР»РµРЅРЅСЏ"));
-        time.add(createButton("\uD83D\uDD19 РќР°Р·Р°Рґ"));
+        time.add(appointedTime(12));
+        time.add(appointedTime(15));
+        time.add(createButton("Вимкнути повідомлення"));
+        time.add(createButton("\uD83D\uDD19 Назад"));
 
         InlineKeyboardMarkup keyboardMarkupForTime = InlineKeyboardMarkup.builder().keyboard(time).build();
 
@@ -143,3 +143,32 @@ public class Button implements CreateButton {
                 .collect(Collectors.toList());
     }
 }
+//    @SneakyThrows
+//    public SendMessage createSettingTimeButton(SendMessage massage, long id) {
+//
+//        massage.setText("Виберіть час, через який можу вам знову скинути курс валют");
+//        massage.setChatId(id);
+//
+//        KeyboardRow turnMessage = new KeyboardRow();
+//        turnMessage.add("Вимкнути повідомлення");
+//
+//        List<KeyboardRow> time = new ArrayList<>();
+//        time.add(appointedTime(new KeyboardRow(),9));
+//        time.add(appointedTime(new KeyboardRow(),12));
+//        time.add(appointedTime(new KeyboardRow(),15));
+//        time.add(turnMessage);
+//
+//        ReplyKeyboardMarkup keyboardMarkupForTime = ReplyKeyboardMarkup.builder().keyboard(time).build();
+//
+//        massage.setReplyMarkup(keyboardMarkupForTime);
+//        return massage;
+//    }
+//
+//    private static KeyboardRow appointedTime(KeyboardRow button, Integer time) {
+//        List<String> times = Stream.iterate(time, com -> com + 1)
+//                .limit(3)
+//                .map(com -> com + ":00")
+//                .collect(Collectors.toList());
+//        button.addAll(times);
+//        return button;
+//    }

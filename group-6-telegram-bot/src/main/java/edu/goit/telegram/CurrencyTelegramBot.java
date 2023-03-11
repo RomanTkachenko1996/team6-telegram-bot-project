@@ -45,7 +45,7 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
                     massage.setChatId(ID);
                     execute(massage);
                     break;
-                case "Збільшити можливості \uD83D\uDEE0":
+                case "Налаштування \uD83D\uDEE0":
                     execute(button.createSettingsButton(massage, ID));
                     break;
                 case "Кількість знаків після коми":

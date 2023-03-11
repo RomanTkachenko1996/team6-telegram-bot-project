@@ -34,7 +34,6 @@ public class StartCommand extends BotCommand {
         video.setVideo(inputFile);
 
         absSender.execute(video);
-
-        absSender.execute(button.createMainButton(message,chat.getId())); // не выводит сообщение!!
+        absSender.execute(button.createMainButton(message, chat.getId()));
     }
 }
