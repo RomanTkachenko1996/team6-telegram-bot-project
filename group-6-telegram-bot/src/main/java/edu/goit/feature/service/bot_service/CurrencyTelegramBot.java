@@ -11,14 +11,12 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
 
     @Override
     public String getBotUsername() {
-        //TODO insert parser for Username
-        return null;
+        return BotCredentialsReader.botUsernameReader();
     }
 
     @Override
     public String getBotToken() {
-        //TODO insert parser for token
-        return null;
+        return BotCredentialsReader.botTokenReader();
     }
 
 
