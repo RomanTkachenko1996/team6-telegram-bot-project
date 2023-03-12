@@ -1,9 +1,9 @@
-package edu.goit.feature.service.serviceNbu;
+package edu.goit.feature.currency_dto;
 
 import lombok.Data;
 import java.math.BigDecimal;
 @Data
-public class CurrencyRateNBUDto {
+public class NBUDto {
     private BigDecimal rate;
     private Currency cc;
 }

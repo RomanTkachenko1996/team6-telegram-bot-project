@@ -1,4 +1,4 @@
-package edu.goit.feature.service.serviceNbu;
+package edu.goit.feature.service.bank_service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.stream.Collectors;
-public class CurrencyNBUService implements CurrencyRetrievalService {
+public class NBUCurrencyService implements CurrencyRetrievalService {
     private static final String URL = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
 
     @Override
