@@ -13,13 +13,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import static edu.goit.feature.enums.Currency.*;
 import static edu.goit.feature.enums.BankName.*;
-public class MonobankCurrencyService {
+public class MonobankCurrencyService implements CurrencyService {
     private static final Map<Integer, Currency> codeCurr = Map.of(
             980, UAH,
             840, USD,
             978, EUR
     );
     private static final String URL = "https://api.monobank.ua/bank/currency";
+    @Override
     public  List<CurrencyRateDto> getCurrencyRates() {
         try {
 
@@ -27,7 +28,7 @@ public class MonobankCurrencyService {
                     .get()
                     .body()
                     .text();
-            List<MonoDto> responseDtos = convert(response);
+            List<MonoDto> responseDtos = convertResponseToList(response);
             return responseDtos.stream()
                     .filter(item -> codeCurr.containsKey(item.getCurrencyCodeA())
                             && codeCurr.containsKey(item.getCurrencyCodeB())
@@ -44,7 +45,7 @@ public class MonobankCurrencyService {
             throw new RuntimeException(e);
         }
     }
-    private List<MonoDto> convert(String response) {
+    private List<MonoDto> convertResponseToList(String response) {
         Type type = TypeToken.getParameterized(List.class, MonoDto.class).getType();
         Gson gson = new Gson();
         return gson.fromJson(response, type);
