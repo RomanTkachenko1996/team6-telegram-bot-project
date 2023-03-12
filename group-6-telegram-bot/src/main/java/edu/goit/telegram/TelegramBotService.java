@@ -5,11 +5,11 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class TelegramBotService {
-    private CurrencyTelegramBot currencyTelegramBot;
     public TelegramBotService(){
+        CurrencyTelegramBot currencyTelegramBot = new CurrencyTelegramBot();
         try {
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-            telegramBotsApi.registerBot(new CurrencyTelegramBot());
+            telegramBotsApi.registerBot(currencyTelegramBot);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

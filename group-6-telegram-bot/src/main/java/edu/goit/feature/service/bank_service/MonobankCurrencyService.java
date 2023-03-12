@@ -1,27 +1,34 @@
-package main.java.edu.goit.feature.service.bank_service;
+package edu.goit.feature.service.bank_service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import edu.goit.feature.currency_dto.CurrencyRateDto;
+import edu.goit.feature.currency_dto.MonoDto;
+import edu.goit.feature.enums.Currency;
+import edu.goit.feature.enums.BankName;
 import org.jsoup.Jsoup;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-public class CurrencyMono {
-    private static Map<Integer, MonoCurrencies> codeCurr = Map.of(
-            980, MonoCurrencies.UAH,
-            840, MonoCurrencies.USD,
-            978, MonoCurrencies.EUR
+import static edu.goit.feature.enums.Currency.*;
+import static edu.goit.feature.enums.BankName.*;
+public class MonobankCurrencyService {
+    private static final Map<Integer, Currency> codeCurr = Map.of(
+            980, UAH,
+            840, USD,
+            978, EUR
     );
+    private static final String URL = "https://api.monobank.ua/bank/currency";
     public  List<CurrencyRateDto> getCurrencyRates() {
         try {
 
-            String response = Jsoup.connect("https://api.monobank.ua/bank/currency").ignoreContentType(true)
+            String response = Jsoup.connect(URL).ignoreContentType(true)
                     .get()
                     .body()
                     .text();
-            List<CurrencyRateMonoResponceDto> responceDtos = convert(response);
-            return responceDtos.stream()
+            List<MonoDto> responseDtos = convert(response);
+            return responseDtos.stream()
                     .filter(item -> codeCurr.containsKey(item.getCurrencyCodeA())
                             && codeCurr.containsKey(item.getCurrencyCodeB())
                             && item.getCurrencyCodeB().equals(980)
@@ -30,16 +37,16 @@ public class CurrencyMono {
                             codeCurr.get(item.getCurrencyCodeA()),
                             item.getRateBuy(),
                             item.getRateSell(),
-                            BankName.MONOBANK
+                            MONOBANK
                     ))
                     .collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    private List<CurrencyRateMonoResponceDto> convert(String responce) {
-        Type type = TypeToken.getParameterized(List.class, CurrencyRateMonoResponceDto.class).getType();
+    private List<MonoDto> convert(String response) {
+        Type type = TypeToken.getParameterized(List.class, MonoDto.class).getType();
         Gson gson = new Gson();
-        return gson.fromJson(responce, type);
+        return gson.fromJson(response, type);
     }
 }
