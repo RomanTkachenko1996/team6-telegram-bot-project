@@ -3,7 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/button/Button.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/ccy/CurrencyPrivate.java" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/ccy/CurrencyPrivate.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/telegram/CurrencyTelegramBot.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/telegram/StartCommand.java" charset="windows-1251" />
   </component>

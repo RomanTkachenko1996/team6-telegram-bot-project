@@ -172,3 +172,6 @@ public class Button implements CreateButton {
 //        button.addAll(times);
 //        return button;
 //    }
+ interface CreateButton {
+    List<InlineKeyboardButton> createButton(String stringOnButton);
+}
