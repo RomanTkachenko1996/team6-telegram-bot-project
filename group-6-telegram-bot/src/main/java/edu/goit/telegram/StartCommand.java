@@ -25,15 +25,6 @@ public class StartCommand extends BotCommand {
     @SneakyThrows
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
         SendMessage message = new SendMessage();
-
-        SendVideo video = new SendVideo();
-        video.setChatId(chat.getId());
-
-        File videoFile = new File("D:\\gif\\ezgif-4-84c5c3a100.mp4");
-        InputFile inputFile = new InputFile(videoFile);
-        video.setVideo(inputFile);
-
-        absSender.execute(video);
         absSender.execute(button.createMainButton(message, chat.getId()));
     }
 }
