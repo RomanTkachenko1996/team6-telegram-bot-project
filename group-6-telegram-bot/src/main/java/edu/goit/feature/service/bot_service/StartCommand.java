@@ -28,12 +28,7 @@ public class StartCommand extends BotCommand {
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
         if (arguments == null || arguments.length == 0) {
-            InlineKeyboardMarkup keyboard = InlineKeyboardMarkup.builder()
-                    //TODO ShowInfo button
-                    .keyboard(Collections.singleton(new ArrayList<>()))
-                    //TODO Settings button
-                    .keyboard(Collections.singleton(new ArrayList<>()))
-                    .build();
+            InlineKeyboardMarkup keyboard = ButtonMarkups.createStartCommandMarkup();
             SendMessage sentStartingMessage = new SendMessage();
             sentStartingMessage.setText("Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют");
             sentStartingMessage.setChatId(Long.toString(chat.getId()));
