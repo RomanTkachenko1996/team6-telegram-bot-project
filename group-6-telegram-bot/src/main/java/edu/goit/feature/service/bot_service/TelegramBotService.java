@@ -1,4 +1,4 @@
-package edu.goit.telegram;
+package edu.goit.feature.service.bot_service;
 
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;

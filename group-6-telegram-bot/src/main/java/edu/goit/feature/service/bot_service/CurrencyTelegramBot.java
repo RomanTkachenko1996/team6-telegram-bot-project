@@ -1,4 +1,4 @@
-package edu.goit.telegram;
+package edu.goit.feature.service.bot_service;
 
 import edu.goit.feature.service.bot_service.StartCommand;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
