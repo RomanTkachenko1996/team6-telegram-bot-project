@@ -4,16 +4,16 @@ import com.google.gson.Gson;
 
 public interface Constants {
     Gson GSON = new Gson();
-    String SETTINGS_BTN = "РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ \uD83D\uDEE0";
-    String SHOW_INFO_BTN = "РџРѕРєР°Р·Р°С‚Рё РєСѓСЂСЃ \uD83D\uDCB8";
-    String MONO_NAME_BTN = "РњРѕРЅРѕР±Р°РЅРє";
-    String PRIVAT_NAME_BTN = "РџСЂРёРІР°С‚Р‘Р°РЅРє";
-    String NBU_NAME_BTN = "РќР‘РЈ";
-    String CHOOSE_BANK_BTN = "Р’РёР±СЂР°С‚Рё Р±Р°РЅРє";
-    String CHOOSE_CCY_BTN = "Р’РёР±СЂР°С‚Рё РІР°Р»СЋС‚Сѓ";
-    String DIGITS_CCY_BTN = "Рљ-СЃС‚СЊ Р·РЅР°РєС–РІ РїС–СЃР»СЏ РєРѕРјРё";
-    String TIME_UPDATES_BTN = "Р§Р°СЃ РґР»СЏ РїРѕРІС–РґРѕРјР»РµРЅСЊ РІС–Рґ Р±РѕС‚Сѓ";
-    String BACK_BTN = "РќР°Р·Р°Рґ \uD83D\uDD19";
+    String SETTINGS_BTN = "Налаштування \uD83D\uDEE0";
+    String SHOW_INFO_BTN = "Показати курс \uD83D\uDCB8";
+    String MONO_NAME_BTN = "Монобанк";
+    String PRIVAT_NAME_BTN = "ПриватБанк";
+    String NBU_NAME_BTN = "НБУ";
+    String CHOOSE_BANK_BTN = "Вибрати банк";
+    String CHOOSE_CCY_BTN = "Вибрати валюту";
+    String DIGITS_CCY_BTN = "К-сть знаків після коми";
+    String TIME_UPDATES_BTN = "Час для повідомлень від боту";
+    String BACK_BTN = "Назад \uD83D\uDD19";
 
 
 

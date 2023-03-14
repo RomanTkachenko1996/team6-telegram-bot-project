@@ -1,11 +1,13 @@
 package edu.goit.feature.service.bot_service;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class BotCredentialsReader {
-        private static final File file = new File("resources/BotCredentials.txt");
+        private static final File file = new File("BotCredentials.txt");
         private static Scanner scanner;
+
 
         private static void reader() {
             try {

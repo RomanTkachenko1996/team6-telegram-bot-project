@@ -1,9 +1,7 @@
 package edu.goit.feature.service.bot_service;
 
 
-
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -41,7 +39,7 @@ public class ButtonsLists {
                         .build()
                 ).collect(Collectors.toList());
     }
-    public static List <InlineKeyboardButton> getAllSettingsBtns(){
+    public static List<InlineKeyboardButton> getAllSettingsBtns(){
         return Stream.of(CHOOSE_BANK_BTN,
                        CHOOSE_CCY_BTN,
                        DIGITS_CCY_BTN,
@@ -90,7 +88,7 @@ public class ButtonsLists {
     }
 
     public static List<InlineKeyboardButton> getAllTimeUpdatesBtns() {
-        return Stream.of("9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","Ð’Ð¸Ð¼ÐºÐ½ÑƒÑ‚Ð¸ Ð¿Ð¾Ð²Ñ–Ð´Ð¾Ð¼Ð»ÐµÐ½Ð½Ñ")
+        return Stream.of("9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","Âèìêíóòè ïîâ³äîìëåííÿ")
                 .map(it -> InlineKeyboardButton.builder()
                         .text(it)
                         .callbackData(it)
