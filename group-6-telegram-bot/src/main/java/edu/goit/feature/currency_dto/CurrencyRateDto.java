@@ -18,10 +18,10 @@ public class CurrencyRateDto {
     private BankName name;
 
     // for nbu as the don't have buy rate
-    public CurrencyRateDto(Currency currency, BigDecimal sellRate, BankName NBU) {
-        this.currency = currency;
-        this.sellRate = sellRate;
-        name = NBU;
+    public CurrencyRateDto(Currency cc, BigDecimal rate, BankName nbu) {
+        currency = cc;
+        sellRate = rate;
+        name = nbu;
         buyRate = BigDecimal.valueOf(0);
     }
 }

@@ -1,29 +1,38 @@
 package edu.goit.feature.service.bank_service;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import edu.goit.feature.Constants;
+import edu.goit.feature.currency_dto.CurrencyRateDto;
+import edu.goit.feature.currency_dto.NBUDto;
+import edu.goit.feature.enums.BankName;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.stream.Collectors;
-public class NBUCurrencyService implements CurrencyRetrievalService {
+
+import static edu.goit.feature.enums.Currency.*;
+
+public class NBUCurrencyService implements CurrencyService {
     private static final String URL = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
 
     @Override
-    public List<CurrencyRateDto> getCurrencyRates() throws IOException {
-        String response = Jsoup.connect(URL).ignoreContentType(true).get().body().text();
-        List<CurrencyRateNBUDto> responseDtos = convertResponseToList(response);
-        return responseDtos.stream()
-                .filter(item -> item.getCc() != null)
-                .map(item -> new CurrencyRateDto(item.getCc(), null, item.getRate()))
-                .collect(Collectors.toList());
+    public List<CurrencyRateDto> getCurrencyRates() {
+        try {
+            String response = Jsoup.connect(URL).ignoreContentType(true).get().body().text();
+            List<NBUDto> responseDtos = convertResponseToList(response);
+            return responseDtos.stream()
+                    .filter(it->it.getCc()==EUR || it.getCc()==USD)
+                    .map(dto -> new CurrencyRateDto(dto.getCc(), dto.getRate(),BankName.NBU))
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private List<CurrencyRateNBUDto> convertResponseToList(String response) {
-        Type type = TypeToken.getParameterized(List.class, CurrencyRateNBUDto.class).getType();
-        Gson gson = new Gson();
-        return gson.fromJson(response, type);
+    private List<NBUDto> convertResponseToList(String response) {
+        Type type = TypeToken.getParameterized(List.class, NBUDto.class).getType();
+        return Constants.GSON.fromJson(response, type);
     }
 }
