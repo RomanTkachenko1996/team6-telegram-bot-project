@@ -65,13 +65,6 @@ public class ButtonMarkups {
                 .keyboardRow(getBackBtn())
                 .build();
     }
-
-    public static InlineKeyboardMarkup createAllDigitsAfterCommaButtonsMarkup() {
-        return InlineKeyboardMarkup.builder()
-                .keyboard(Collections.singleton(getAllDigitsAfterCommaBtns()))
-                .keyboardRow(getBackBtn())
-                .build();
-    }
     public static InlineKeyboardMarkup createStartCommandMarkup() {
         return InlineKeyboardMarkup.builder()
                 .keyboard(Collections.singleton(getShowInfoBtn()))
