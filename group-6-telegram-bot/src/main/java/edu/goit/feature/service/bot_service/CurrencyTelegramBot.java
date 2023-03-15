@@ -1,15 +1,17 @@
 package edu.goit.feature.service.bot_service;
 
+import edu.goit.feature.handler.TimeToSendMessages;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import static edu.goit.feature.service.bot_service.ButtonsLists.getAllSettingsBtns;
-import static edu.goit.feature.service.bot_service.ButtonsLists.getAllTimeUpdatesBtns;
 
 public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
+    private final TimeToSendMessages timeToSendMessages;
+
     public CurrencyTelegramBot() {
+        timeToSendMessages = new TimeToSendMessages();
         register(new StartCommand("start", "CurrencyTelegramBot started"));
     }
 
@@ -29,42 +31,44 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
     @Override
     public void processNonCommandUpdate(Update update) {
         if (update.hasCallbackQuery()) {
-            String cb = update.getCallbackQuery().getData();
+            String callbackData = update.getCallbackQuery().getData();
             final long ID = update.getCallbackQuery().getMessage().getChatId();
             SendMessage massage = new SendMessage();
 
-            switch (cb) {
-                case "Отримати інформацію \uD83D\uDCB8":
+            switch (callbackData) {
+                case "Показати курс \uD83D\uDCB8":
                     massage.setText("Not yet");
+                    massage.setChatId(ID);
                     execute(massage);
                     break;
                 case "Налаштування \uD83D\uDEE0":
+                    massage.setText("Налаштування: ");
                     massage.setChatId(ID);
                     massage.setReplyMarkup(ButtonMarkups.createAllSettingsButtonsMarkup());
                     execute(massage);
                     break;
-                case "Кількість знаків після коми":
+                case "К-сть знаків після коми":
+                    massage.setText("Скількі знаків після коми ви хочите бачити?");
                     massage.setChatId(ID);
                     massage.setReplyMarkup(ButtonMarkups.createAllDigitsAfterCommaMarkup());
                     execute(massage);
                     break;
-                case "Вибір банку":
+                case "Вибрати банк":
+                    massage.setText("Який банк ви хочете обрати?");
                     massage.setChatId(ID);
                     massage.setReplyMarkup(ButtonMarkups.createAllBanksButtonsMarkup());
                     execute(massage);
                     break;
-                case "Вибір валюти":
+                case "Вибрати валюту":
+                    massage.setText("Яку валюту ви хочете обрати?");
                     massage.setChatId(ID);
                     massage.setReplyMarkup(ButtonMarkups.createAllCurrenciesButtonsMarkup());
                     execute(massage);
                     break;
-                case "Час оповіщень":
-                    massage.setChatId(ID);
-                    massage.setReplyMarkup(ButtonMarkups.createAllTimeUpdatesButtonsMarkup());
-                    execute(massage);
+                case "Час для повідомлень від боту":
+                    timeToSendMessages.processNonCommandUpdate(update);
                     break;
             }
-        } else
-            System.out.println("command not exist!");
+        }
     }
 }

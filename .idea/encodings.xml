@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/AppLauncher.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/Constants.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/handler/TimeToSendMessages.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bank_service/MonobankCurrencyService.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bank_service/PrivatBankCurrencyService.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/BotCredentialsReader.java" charset="windows-1251" />

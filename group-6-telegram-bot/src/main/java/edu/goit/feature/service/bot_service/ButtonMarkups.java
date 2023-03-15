@@ -32,18 +32,19 @@ public class ButtonMarkups {
     }
 
     public static InlineKeyboardMarkup createAllTimeUpdatesButtonsMarkup() {
-        List<InlineKeyboardButton> buttons0To2 =  getAllTimeUpdatesBtns().subList(0, 3);
-        List<InlineKeyboardButton> buttons3To5 = getAllTimeUpdatesBtns().subList(3, 6);
-        List<InlineKeyboardButton> buttons6To8 = getAllTimeUpdatesBtns().subList(6, 9);
-        List<InlineKeyboardButton> buttons9 = Collections.singletonList(getAllTimeUpdatesBtns().get(9));
-//        banksRows.addAll(List.of(buttons0To2,buttons3To5,buttons6To8,buttons9));
+        List<InlineKeyboardButton> buttons10 =  Collections.singletonList(InlineKeyboardButton.builder()
+                .text("Вимкнути повідомлення")
+                .callbackData("DELETE")
+                .build());
+
+        List<List<InlineKeyboardButton>> banksRows = new ArrayList<>();
+        banksRows.add(getAllTimeUpdatesBtns().subList(0, 3));
+        banksRows.add(getAllTimeUpdatesBtns().subList(3, 6));
+        banksRows.add(getAllTimeUpdatesBtns().subList(6, 9));
+        banksRows.add(buttons10);
+
         return InlineKeyboardMarkup.builder()
-                .keyboard(Arrays.asList(
-                        buttons0To2,
-                        buttons3To5,
-                        buttons6To8,
-                        buttons9
-                ))
+                .keyboard(banksRows)
                 .keyboardRow(getBackBtn())
                 .build();
     }
@@ -56,7 +57,7 @@ public class ButtonMarkups {
     }
 
     public static InlineKeyboardMarkup createAllSettingsButtonsMarkup() {
-        List<List<InlineKeyboardButton>> settingsRows = new ArrayList<>();
+        List<List<InlineKeyboardButton>> settingsRows = new ArrayList<>(); // Вирішив зрробити сразу пустий лист листів щоб зайвий раз не писати його в CurrencyTelegramBot
         for (InlineKeyboardButton bankButton : getAllSettingsBtns()) {
             settingsRows.add(Collections.singletonList(bankButton));
         }

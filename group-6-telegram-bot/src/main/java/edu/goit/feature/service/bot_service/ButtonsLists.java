@@ -1,7 +1,7 @@
 package edu.goit.feature.service.bot_service;
 
-
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,6 +20,7 @@ public class ButtonsLists {
                                 .build()
                 ).collect(Collectors.toList());
     }
+
     public static List<InlineKeyboardButton> getSettingsBtn() {
         return Stream.of(SETTINGS_BTN)
                 .map(it ->
@@ -39,21 +40,12 @@ public class ButtonsLists {
                         .build()
                 ).collect(Collectors.toList());
     }
-    public static List<InlineKeyboardButton> getAllSettingsBtns(){
+
+    public static List<InlineKeyboardButton> getAllSettingsBtns() {
         return Stream.of(CHOOSE_BANK_BTN,
-                       CHOOSE_CCY_BTN,
-                       DIGITS_CCY_BTN,
-                       TIME_UPDATES_BTN)
-                .map(it -> InlineKeyboardButton.builder()
-                        .text(it)
-                        .callbackData(it)
-                        .build())
-                .collect(Collectors.toList());
-    }
-    public static List<InlineKeyboardButton> getAllBanksBtns() {
-        return Stream.of(MONO_NAME_BTN,
-                        PRIVAT_NAME_BTN,
-                       NBU_NAME_BTN)
+                        CHOOSE_CCY_BTN,
+                        DIGITS_CCY_BTN,
+                        TIME_UPDATES_BTN)
                 .map(it -> InlineKeyboardButton.builder()
                         .text(it)
                         .callbackData(it)
@@ -61,7 +53,18 @@ public class ButtonsLists {
                 .collect(Collectors.toList());
     }
 
-    public static List<InlineKeyboardButton> getAllCurrenciesBtns(){
+    public static List<InlineKeyboardButton> getAllBanksBtns() {
+        return Stream.of(MONO_NAME_BTN,
+                        PRIVAT_NAME_BTN,
+                        NBU_NAME_BTN)
+                .map(it -> InlineKeyboardButton.builder()
+                        .text(it)
+                        .callbackData(it)
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    public static List<InlineKeyboardButton> getAllCurrenciesBtns() {
         return Stream.of(USD, EUR)
                 .map(Enum::name)
                 .map(it -> InlineKeyboardButton.builder()
@@ -78,8 +81,9 @@ public class ButtonsLists {
                 )
                 .collect(Collectors.toList());
     }
+
     public static List<InlineKeyboardButton> getAllDigitsAfterCommaBtns() {
-        return Stream.of("2","3","4")
+        return Stream.of("2", "3", "4")
                 .map(it -> InlineKeyboardButton.builder()
                         .text(it)
                         .callbackData(it)
@@ -88,11 +92,19 @@ public class ButtonsLists {
     }
 
     public static List<InlineKeyboardButton> getAllTimeUpdatesBtns() {
-        return Stream.of("9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","Вимкнути повідомлення")
+        return Stream.of("9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00")
                 .map(it -> InlineKeyboardButton.builder()
                         .text(it)
                         .callbackData(it)
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    public static String getTimeInformation(String timeString) {
+        return Stream.builder()
+                .add("Відпраляю вам повідомлення о ")
+                .add(timeString)
+                .build()
+                .toString();
     }
 }
