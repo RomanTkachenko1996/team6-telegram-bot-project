@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="windows-1251">
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/AppLauncher.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/Constants.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/handler/TimeHandler.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bank_service/MonobankCurrencyService.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bank_service/PrivatBankCurrencyService.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/BotCredentialsReader.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/ButtonMarkups.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/ButtonsLists.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/CurrencyTelegramBot.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/StartCommand.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/TelegramBotService.java" charset="windows-1251" />
+    <file url="PROJECT" charset="windows-1251" />
+  </component>
+</project>
