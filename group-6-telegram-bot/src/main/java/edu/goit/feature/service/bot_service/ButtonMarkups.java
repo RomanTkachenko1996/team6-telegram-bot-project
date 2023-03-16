@@ -4,6 +4,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,9 +19,8 @@ public class ButtonMarkups {
                 .build();
     }
 
-    public static InlineKeyboardMarkup createAllBanksButtonsMarkup() {
-        List<InlineKeyboardButton> getAllBanks = getAllBanksBtns();
-        List<List<InlineKeyboardButton>> banksRows = new ArrayList<>();
+    public static InlineKeyboardMarkup createAllBanksButtonsMarkup(List<List<InlineKeyboardButton>> banksRows) {
+        List<InlineKeyboardButton> getAllBanks = ButtonsLists.getAllBanksBtns();
         for (InlineKeyboardButton bankButton : getAllBanks) {
             banksRows.add(Collections.singletonList(bankButton));
         }
@@ -30,20 +30,19 @@ public class ButtonMarkups {
                 .build();
     }
 
-    public static InlineKeyboardMarkup createAllTimeUpdatesButtonsMarkup() {
-        List<InlineKeyboardButton> buttons10 =  Collections.singletonList(InlineKeyboardButton.builder()
-                .text("�������� �����������")
-                .callbackData("DELETE")
-                .build());
-
-        List<List<InlineKeyboardButton>> banksRows = new ArrayList<>();
-        banksRows.add(getAllTimeUpdatesBtns().subList(0, 3));
-        banksRows.add(getAllTimeUpdatesBtns().subList(3, 6));
-        banksRows.add(getAllTimeUpdatesBtns().subList(6, 9));
-        banksRows.add(buttons10);
-
+    public static InlineKeyboardMarkup createAllTimeUpdatesButtonsMarkup(List<List<InlineKeyboardButton>> banksRows) {
+        List<InlineKeyboardButton> buttons0To2 =  getAllTimeUpdatesBtns().subList(0, 3);
+        List<InlineKeyboardButton> buttons3To5 = getAllTimeUpdatesBtns().subList(3, 6);
+        List<InlineKeyboardButton> buttons6To8 = getAllTimeUpdatesBtns().subList(6, 9);
+        List<InlineKeyboardButton> buttons9 = Collections.singletonList(getAllTimeUpdatesBtns().get(9));
+        banksRows.addAll(List.of(buttons0To2,buttons3To5,buttons6To8,buttons9));
         return InlineKeyboardMarkup.builder()
-                .keyboard(banksRows)
+                .keyboard(Arrays.asList(
+                        buttons0To2,
+                        buttons3To5,
+                        buttons6To8,
+                        buttons9
+                ))
                 .keyboardRow(getBackBtn())
                 .build();
     }
@@ -56,7 +55,7 @@ public class ButtonMarkups {
     }
 
     public static InlineKeyboardMarkup createAllSettingsButtonsMarkup() {
-        List<List<InlineKeyboardButton>> settingsRows = new ArrayList<>(); // ������ �������� ����� ������ ���� ����� ��� ������ ��� �� ������ ���� � CurrencyTelegramBot
+        List<List<InlineKeyboardButton>> settingsRows = new ArrayList<>();
         for (InlineKeyboardButton bankButton : getAllSettingsBtns()) {
             settingsRows.add(Collections.singletonList(bankButton));
         }
