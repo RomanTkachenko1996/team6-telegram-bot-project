@@ -99,12 +99,4 @@ public class ButtonsLists {
                         .build())
                 .collect(Collectors.toList());
     }
-
-    public static String getTimeInformation(String timeString) {
-        return Stream.builder()
-                .add("Відпраляю вам повідомлення о ")
-                .add(timeString)
-                .build()
-                .toString();
-    }
 }

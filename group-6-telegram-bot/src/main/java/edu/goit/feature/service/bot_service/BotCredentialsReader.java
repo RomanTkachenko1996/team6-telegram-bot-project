@@ -1,7 +1,6 @@
 package edu.goit.feature.service.bot_service;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class BotCredentialsReader {

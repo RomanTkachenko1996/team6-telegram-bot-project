@@ -1,6 +1,6 @@
 package edu.goit.feature.service.bot_service;
 
-import edu.goit.feature.handler.TimeToSendMessages;
+import edu.goit.feature.handler.TimeHandler;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -8,10 +8,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 
 public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
-    private final TimeToSendMessages timeToSendMessages;
+
+    private final TimeHandler time;
 
     public CurrencyTelegramBot() {
-        timeToSendMessages = new TimeToSendMessages();
+        time = new TimeHandler();
         register(new StartCommand("start", "CurrencyTelegramBot started"));
     }
 
@@ -66,7 +67,49 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
                     execute(massage);
                     break;
                 case "Час для повідомлень від боту":
-                    timeToSendMessages.processNonCommandUpdate(update);
+                    massage.setText("Заплануйте час для отримання повідомлення:");
+                    massage.setChatId(ID);
+                    massage.setReplyMarkup(ButtonMarkups.createAllTimeUpdatesButtonsMarkup());
+                    execute(massage);
+                    break;
+                case "9:00":
+                    execute(time.sendSelectedTime(ID, "9:00"));
+                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    break;
+                case "10:00":
+                    execute(time.sendSelectedTime(ID, "10:00"));
+                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    break;
+                case "11:00":
+                    execute(time.sendSelectedTime(ID, "11:00"));
+                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    break;
+                case "12:00":
+                    execute(time.sendSelectedTime(ID, "12:00"));
+                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    break;
+                case "13:00":
+                    execute(time.sendSelectedTime(ID, "13:00"));
+                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    break;
+                case "14:00":
+                    execute(time.sendSelectedTime(ID, "14:00"));
+                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    break;
+                case "15:00":
+                    execute(time.sendSelectedTime(ID, "15:00"));
+                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    break;
+                case "16:00":
+                    execute(time.sendSelectedTime(ID, "16:00"));
+                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    break;
+                case "17:00":
+                    execute(time.sendSelectedTime(ID, "17:00"));
+                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    break;
+                case "DELETE":
+                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
                     break;
             }
         }
