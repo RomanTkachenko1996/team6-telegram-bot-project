@@ -24,7 +24,7 @@ public class NBUCurrencyService implements CurrencyService {
             List<NBUDto> responseDtos = convertResponseToList(response);
             return responseDtos.stream()
                     .filter(it->it.getCc()==EUR || it.getCc()==USD)
-                    .map(dto -> new CurrencyRateDto(dto.getCc(), dto.getRate(), BankName.NBU))
+                    .map(dto -> new CurrencyRateDto(dto.getCc(), dto.getRate(),BankName.NBU))
                     .collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException(e);

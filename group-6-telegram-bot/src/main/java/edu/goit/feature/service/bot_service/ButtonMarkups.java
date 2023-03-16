@@ -32,7 +32,7 @@ public class ButtonMarkups {
 
     public static InlineKeyboardMarkup createAllTimeUpdatesButtonsMarkup() {
         List<InlineKeyboardButton> buttons10 =  Collections.singletonList(InlineKeyboardButton.builder()
-                .text("Вимкнути повідомлення")
+                .text("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
                 .callbackData("DELETE")
                 .build());
 
@@ -56,7 +56,7 @@ public class ButtonMarkups {
     }
 
     public static InlineKeyboardMarkup createAllSettingsButtonsMarkup() {
-        List<List<InlineKeyboardButton>> settingsRows = new ArrayList<>(); // Вирішив зрробити сразу пустий лист листів щоб зайвий раз не писати його в CurrencyTelegramBot
+        List<List<InlineKeyboardButton>> settingsRows = new ArrayList<>(); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ CurrencyTelegramBot
         for (InlineKeyboardButton bankButton : getAllSettingsBtns()) {
             settingsRows.add(Collections.singletonList(bankButton));
         }
@@ -65,7 +65,7 @@ public class ButtonMarkups {
                 .keyboardRow(getBackBtn())
                 .build();
     }
-
+    
     public static InlineKeyboardMarkup createStartCommandMarkup() {
         return InlineKeyboardMarkup.builder()
                 .keyboard(Collections.singleton(getShowInfoBtn()))

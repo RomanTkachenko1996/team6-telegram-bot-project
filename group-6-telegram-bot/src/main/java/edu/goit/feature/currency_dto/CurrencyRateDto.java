@@ -16,6 +16,7 @@ public class CurrencyRateDto {
     private BigDecimal buyRate;
     private BigDecimal sellRate;
     private BankName name;
+    // for nbu as the don't have buy rate
 
     public CurrencyRateDto(Currency cc, BigDecimal rate, BankName nbu) {
         currency = cc;
