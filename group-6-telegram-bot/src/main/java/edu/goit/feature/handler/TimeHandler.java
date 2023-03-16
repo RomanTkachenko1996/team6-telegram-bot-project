@@ -24,7 +24,7 @@ public class TimeHandler {
         return message;
     }
 
-    public EditMessageReplyMarkup updateSelectedButtonsForTime(Update update, long ID, String callBackData) {
+    public EditMessageReplyMarkup handleChooseTimeUpdatesBtn(Update update, long ID, String callBackData) {
 
         List<List<InlineKeyboardButton>> time = putDataOnTheKeyboard();
 

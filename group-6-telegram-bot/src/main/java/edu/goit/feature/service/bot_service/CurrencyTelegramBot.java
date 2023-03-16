@@ -74,42 +74,42 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
                     break;
                 case "9:00":
                     execute(time.sendSelectedTime(ID, "9:00"));
-                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    execute(time.handleChooseTimeUpdatesBtn(update, ID, callbackData));
                     break;
                 case "10:00":
                     execute(time.sendSelectedTime(ID, "10:00"));
-                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    execute(time.handleChooseTimeUpdatesBtn(update, ID, callbackData));
                     break;
                 case "11:00":
                     execute(time.sendSelectedTime(ID, "11:00"));
-                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    execute(time.handleChooseTimeUpdatesBtn(update, ID, callbackData));
                     break;
                 case "12:00":
                     execute(time.sendSelectedTime(ID, "12:00"));
-                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    execute(time.handleChooseTimeUpdatesBtn(update, ID, callbackData));
                     break;
                 case "13:00":
                     execute(time.sendSelectedTime(ID, "13:00"));
-                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    execute(time.handleChooseTimeUpdatesBtn(update, ID, callbackData));
                     break;
                 case "14:00":
                     execute(time.sendSelectedTime(ID, "14:00"));
-                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    execute(time.handleChooseTimeUpdatesBtn(update, ID, callbackData));
                     break;
                 case "15:00":
                     execute(time.sendSelectedTime(ID, "15:00"));
-                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    execute(time.handleChooseTimeUpdatesBtn(update, ID, callbackData));
                     break;
                 case "16:00":
                     execute(time.sendSelectedTime(ID, "16:00"));
-                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    execute(time.handleChooseTimeUpdatesBtn(update, ID, callbackData));
                     break;
                 case "17:00":
                     execute(time.sendSelectedTime(ID, "17:00"));
-                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    execute(time.handleChooseTimeUpdatesBtn(update, ID, callbackData));
                     break;
                 case "DELETE":
-                    execute(time.updateSelectedButtonsForTime(update, ID, callbackData));
+                    execute(time.handleChooseTimeUpdatesBtn(update, ID, callbackData));
                     break;
             }
         }
