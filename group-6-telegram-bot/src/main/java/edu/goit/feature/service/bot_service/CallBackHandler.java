@@ -48,7 +48,7 @@ public class CallBackHandler {
     // --------- </вибір часу для оновлень>
 
     // --------- <вибір банку>
-    public static EditMessageText handleBankSelection(Update update) {
+    public static EditMessageText handleComaSelection(Update update) {
         String callBackData = update.getCallbackQuery().getData();
         String setText = "Виберіть банк:";
         //creating a new list to update the keyboard
@@ -56,6 +56,15 @@ public class CallBackHandler {
         //creating the keyboard to return to the user
         InlineKeyboardMarkup keyboard = ButtonMarkups.createAllBanksButtonsMarkup(rows);
         updateSelectedButtonsForBanks(update, callBackData, keyboard, rows);
+        return getEditMessageResponse(update, keyboard,setText);
+    }
+    public static EditMessageText handleBankSelection(Update update) {
+        String callBackData = update.getCallbackQuery().getData();
+        String setText = "Кількість знаків після коми:";
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+        //creating the keyboard to return to the user
+        InlineKeyboardMarkup keyboard = ButtonMarkups.createAllBanksButtonsMarkup(rows);
+        updateSelectedСoma(update, callBackData, keyboard, rows);
         return getEditMessageResponse(update, keyboard,setText);
     }
     private static void updateSelectedButtonsForBanks(Update update, String callBackData, InlineKeyboardMarkup keyboard, List<List<InlineKeyboardButton>> rows) {
@@ -78,7 +87,28 @@ public class CallBackHandler {
         keyboard.setKeyboard(rows);
     }
     // --------- </вибір банку>
-
+    private static void updateSelectedСoma(Update update, String callBackData, InlineKeyboardMarkup keyboard, List<List<InlineKeyboardButton>> rows) {
+        String buttonText;
+        switch (callBackData) {
+            case "2" : {
+                buttonText = "2" + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
+                rows.set(0, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("2").build()));
+                break;
+            }
+            case "3":{
+                buttonText = "3" + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
+                rows.set(1, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("3").build()));
+                break;
+            }
+            case "4" : {
+                buttonText = "4" + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
+                rows.set(2, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("4").build()));
+                break;
+            }
+        }
+        rows.add(ButtonsLists.getBackBtn());
+        keyboard.setKeyboard(rows);
+    }
 
 
 
