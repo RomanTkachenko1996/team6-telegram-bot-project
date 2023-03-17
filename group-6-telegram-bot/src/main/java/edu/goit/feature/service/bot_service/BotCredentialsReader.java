@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Scanner;
 
 public class BotCredentialsReader {
-        private static final File file = new File("BotCredentials.txt");
+        private static final File file = new File("src/main/resources/BotCredentials.txt");
         private static Scanner scanner;
 
 
