@@ -8,6 +8,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import java.util.ArrayList;
 import java.util.List;
 
+import static edu.goit.feature.enums.Currency.EUR;
+import static edu.goit.feature.enums.Currency.USD;
+
 public class CallBackHandler {
     public static EditMessageText handleTimeUpdatesSelection(Update update) {
         String callBackData = update.getCallbackQuery().getData();
@@ -67,6 +70,14 @@ public class CallBackHandler {
         updateSelectedСoma(update, callBackData, keyboard, rows);
         return getEditMessageResponse(update, keyboard,setText);
     }
+    public static EditMessageText handleCurrencySelection(Update update) {
+        String callBackData = update.getCallbackQuery().getData();
+        String setText = "Виберіть валюту:";
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+        InlineKeyboardMarkup keyboard = ButtonMarkups.createAllCurrenciesButtonsMarkup();
+        updateSelectedButtonsForCurrency(update, callBackData, keyboard, rows);
+        return getEditMessageResponse(update, keyboard, setText);
+    }
     private static void updateSelectedButtonsForBanks(Update update, String callBackData, InlineKeyboardMarkup keyboard, List<List<InlineKeyboardButton>> rows) {
         String buttonText;
         switch (callBackData) {
@@ -87,6 +98,24 @@ public class CallBackHandler {
         keyboard.setKeyboard(rows);
     }
     // --------- </вибір банку>
+    private static void updateSelectedButtonsForCurrency(Update update, String callBackData, InlineKeyboardMarkup keyboard, List<List<InlineKeyboardButton>> rows) {
+        String message = update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705";
+        String buttonText;
+        switch (callBackData) {
+            case "Доллар" : {
+                buttonText = USD + "\uD83C\uDDFA\uD83C\uDDF8" + message;
+                rows.set(0, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("Доллар").build()));
+                break;
+            }
+            case "Євро" : {
+                buttonText = EUR + "\uD83C\uDDEA\uD83C\uDDFA" + message;
+                rows.set(1, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("Євро").build()));
+                break;
+            }
+        }
+        rows.add(ButtonsLists.getBackBtn());
+        keyboard.setKeyboard(rows);
+    }
     private static void updateSelectedСoma(Update update, String callBackData, InlineKeyboardMarkup keyboard, List<List<InlineKeyboardButton>> rows) {
         String buttonText;
         switch (callBackData) {
