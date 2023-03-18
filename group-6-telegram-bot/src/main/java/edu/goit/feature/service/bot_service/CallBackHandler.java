@@ -225,4 +225,15 @@ public class CallBackHandler {
         message.setReplyMarkup(keyboard);
         return message;
     }
+    public SendMessage handleChooseSettingsBtn(Update update){
+       InlineKeyboardMarkup keyboard =   ButtonMarkups.createAllSettingsButtonsMarkup();
+        String setText = "Налаштування";
+        return sendMessage(update,keyboard,setText);
+    }
+    public SendMessage showInfoBtn(Update update){
+        InlineKeyboardMarkup keyboard = (InlineKeyboardMarkup) ButtonsLists.getShowInfoBtn();
+        String setText = "Показати інфу";
+        return sendMessage(update,keyboard,setText);
+    }
+
 }
