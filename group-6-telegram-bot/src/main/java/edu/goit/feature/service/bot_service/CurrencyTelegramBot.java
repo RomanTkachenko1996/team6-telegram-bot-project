@@ -1,7 +1,12 @@
 package edu.goit.feature.service.bot_service;
 
+
 import edu.goit.feature.service.bot_service.StartCommand;
 import edu.goit.feature.service.statemachine.StateMachineUsers;
+
+
+import lombok.SneakyThrows;
+
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -13,8 +18,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+
 public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
+
     private ScheduledExecutorService scheduledExecutorService;
+
+
+
+
     public CurrencyTelegramBot() {
         register(new StartCommand("start", "CurrencyTelegramBot started"));
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
@@ -22,18 +33,23 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
 
     @Override
     public String getBotUsername() {
+        System.out.println(BotCredentialsReader.botUsernameReader());
         return BotCredentialsReader.botUsernameReader();
     }
 
     @Override
     public String getBotToken() {
+        System.out.println(BotCredentialsReader.botTokenReader());
         return BotCredentialsReader.botTokenReader();
     }
 
-
+    @SneakyThrows
     @Override
     public void processNonCommandUpdate(Update update) {
+
+
     }
+
 
 
     private class MessageUsers implements StateMachineUsers {
@@ -71,3 +87,5 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
         }
     }
 }
+}
+
