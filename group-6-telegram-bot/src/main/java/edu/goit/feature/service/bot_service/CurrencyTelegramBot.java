@@ -1,10 +1,16 @@
 package edu.goit.feature.service.bot_service;
 
+
 import edu.goit.feature.Constants;
 import edu.goit.feature.enums.Currency;
+
 import edu.goit.feature.service.bot_service.StartCommand;
 import edu.goit.feature.service.statemachine.StateMachine;
 import edu.goit.feature.service.statemachine.StateMachineUsers;
+
+
+import lombok.SneakyThrows;
+
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
@@ -22,11 +28,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+
 public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
+
     Map<String, StateMachine> stateMachines;
     static String responseFprBackBtn;
     private ScheduledExecutorService scheduledExecutorService;
     SettingsStorage settingsStorage;
+
+
     public CurrencyTelegramBot() {
         register(new StartCommand("start", "CurrencyTelegramBot started"));
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
@@ -35,17 +45,20 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
 
     @Override
     public String getBotUsername() {
+        System.out.println(BotCredentialsReader.botUsernameReader());
         return BotCredentialsReader.botUsernameReader();
     }
 
     @Override
     public String getBotToken() {
+        System.out.println(BotCredentialsReader.botTokenReader());
         return BotCredentialsReader.botTokenReader();
     }
 
-
+    @SneakyThrows
     @Override
     public void processNonCommandUpdate(Update update) {
+
         String callBackQuery = update.getCallbackQuery().getData();
         Map<String, Consumer<String>> mapButtons = Map.of(
                 Constants.SHOW_INFO_BTN.equals(callBackQuery), (value) -> {
@@ -115,6 +128,7 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
             }
             stateMachines.get(chatID).handle(callBackQuery);
         });
+
     }
 
     private void executeMessage(SendMessage sendMessage) {
@@ -133,6 +147,7 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
             throw new RuntimeException(e);
         }
     }
+
 
     private class MessageUsers implements StateMachineUsers {
 
@@ -169,3 +184,5 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
         }
     }
 }
+}
+

@@ -20,7 +20,7 @@ public class ButtonMarkups {
     }
 
     public static InlineKeyboardMarkup createAllBanksButtonsMarkup(List<List<InlineKeyboardButton>> banksRows) {
-        List<InlineKeyboardButton> getAllBanks = getAllBanksBtns();
+        List<InlineKeyboardButton> getAllBanks = ButtonsLists.getAllBanksBtns();
         for (InlineKeyboardButton bankButton : getAllBanks) {
             banksRows.add(Collections.singletonList(bankButton));
         }
@@ -47,7 +47,6 @@ public class ButtonMarkups {
                 .build();
     }
 
-
     public static InlineKeyboardMarkup createAllDigitsAfterCommaMarkup() {
         return InlineKeyboardMarkup.builder()
                 .keyboard(Collections.singleton(getAllDigitsAfterCommaBtns()))
@@ -65,13 +64,7 @@ public class ButtonMarkups {
                 .keyboardRow(getBackBtn())
                 .build();
     }
-
-    public static InlineKeyboardMarkup createAllDigitsAfterCommaButtonsMarkup() {
-        return InlineKeyboardMarkup.builder()
-                .keyboard(Collections.singleton(getAllDigitsAfterCommaBtns()))
-                .keyboardRow(getBackBtn())
-                .build();
-    }
+    
     public static InlineKeyboardMarkup createStartCommandMarkup() {
         return InlineKeyboardMarkup.builder()
                 .keyboard(Collections.singleton(getShowInfoBtn()))

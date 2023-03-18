@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/AppLauncher.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/Constants.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/handler/TimeHandler.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bank_service/MonobankCurrencyService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bank_service/PrivatBankCurrencyService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/BotCredentialsReader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/ButtonMarkups.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/ButtonsLists.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/CurrencyTelegramBot.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/StartCommand.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/group-6-telegram-bot/src/main/java/edu/goit/feature/service/bot_service/TelegramBotService.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
