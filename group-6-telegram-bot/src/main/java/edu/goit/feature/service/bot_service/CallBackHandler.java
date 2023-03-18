@@ -225,15 +225,19 @@ public class CallBackHandler {
         message.setReplyMarkup(keyboard);
         return message;
     }
-    public SendMessage handleChooseSettingsBtn(Update update){
-       InlineKeyboardMarkup keyboard =   ButtonMarkups.createAllSettingsButtonsMarkup();
-        String setText = "Налаштування";
-        return sendMessage(update,keyboard,setText);
+
+    public static SendMessage handleChooseSettingsBtn(Update update) {
+        String setText = "Виберіть налаштування:";
+        InlineKeyboardMarkup keyboard = ButtonMarkups.createAllSettingsButtonsMarkup();
+        return sendMessage(update, keyboard, setText);
     }
-    public SendMessage showInfoBtn(Update update){
-        InlineKeyboardMarkup keyboard = (InlineKeyboardMarkup) ButtonsLists.getShowInfoBtn();
-        String setText = "Показати інфу";
-        return sendMessage(update,keyboard,setText);
+    public static SendMessage handleShowInfoBtn(Update update, SettingsStorageDto settingsStorage) {
+        String message = PrettyOutputForShowInfo.makeOutput(settingsStorage);
+        System.out.println(message); // to trace the output in console
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setText(message);
+        sendMessage.setChatId(Long.toString(update.getCallbackQuery().getMessage().getChatId()));
+        return sendMessage;
     }
 
 }
