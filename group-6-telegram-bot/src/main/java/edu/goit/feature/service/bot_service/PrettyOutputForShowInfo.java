@@ -37,10 +37,10 @@ public class PrettyOutputForShowInfo {
                 .findFirst()
                 .orElseThrow()
                 .setScale(Integer.parseInt(digitsAfterDots), RoundingMode.HALF_EVEN);
-        String template = ("\uD83D\uDCC8 РљСѓСЂСЃ ${bank}\n\n" +
-                "\uD83D\uDCB0 Р’Р°Р»СЋС‚Р° \u27A1\uFE0F ${currency}\n\n" +
-                "\uD83D\uDCCD РџСЂРѕРґР°Р¶ ${sale}\n" +
-                "\uD83D\uDCCD РљСѓРїС–РІР»СЏ ${buy}")
+        String template = ("\uD83D\uDCC8 Курс ${bank}\n\n" +
+                "\uD83D\uDCB0 Валюта \u27A1\uFE0F ${currency}\n\n" +
+                "\uD83D\uDCCD Продаж ${sale}\n" +
+                "\uD83D\uDCCD Купівля ${buy}")
                 .replace("${bank}",bank)
                 .replace("${currency}",String.valueOf(currency))
                 .replace("${sale}", sale.toString());
@@ -48,7 +48,7 @@ public class PrettyOutputForShowInfo {
         if (bank.equals(Constants.MONO_NAME_BTN) || bank.equals(Constants.PRIVAT_NAME_BTN)){
             return template.replace("${buy}",buy.toString());
         } else {
-            return template.replace("\uD83D\uDCCD РљСѓРїС–РІР»СЏ ${buy}","");
+            return template.replace("\uD83D\uDCCD Купівля ${buy}","");
         }
     }
 }

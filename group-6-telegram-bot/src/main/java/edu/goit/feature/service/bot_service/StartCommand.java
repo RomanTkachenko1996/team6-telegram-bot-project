@@ -21,7 +21,7 @@ public class StartCommand extends BotCommand {
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
         InlineKeyboardMarkup keyboard =  ButtonMarkups.createStartCommandMarkup();
         SendMessage sentStartingMessage = new SendMessage();
-        sentStartingMessage.setText("Р›Р°СЃРєР°РІРѕ РїСЂРѕСЃРёРјРѕ. Р¦РµР№ Р±РѕС‚ РґРѕРїРѕРјРѕР¶Рµ РІС–РґСЃР»С–РґРєРѕРІСѓРІР°С‚Рё Р°РєС‚СѓР°Р»СЊРЅС– РєСѓСЂСЃРё РІР°Р»СЋС‚");
+        sentStartingMessage.setText("Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют");
         sentStartingMessage.setChatId(Long.toString(chat.getId()));
         sentStartingMessage.setReplyMarkup(keyboard);
         try {
