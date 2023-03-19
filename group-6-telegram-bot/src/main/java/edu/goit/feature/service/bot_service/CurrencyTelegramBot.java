@@ -3,8 +3,9 @@ package edu.goit.feature.service.bot_service;
 
 import edu.goit.feature.Constants;
 import edu.goit.feature.enums.Currency;
-
-import edu.goit.feature.service.bot_service.StartCommand;
+import edu.goit.feature.service.bot_service.bot_dto.SettingsStorageDto;
+import edu.goit.feature.service.bot_service.buttons.StartCommand;
+import edu.goit.feature.service.bot_service.ui.PrettyOutputForShowInfo;
 import edu.goit.feature.service.statemachine.StateMachine;
 import edu.goit.feature.service.statemachine.StateMachineUsers;
 
@@ -27,7 +28,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 
 public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
@@ -48,13 +48,11 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
 
     @Override
     public String getBotUsername() {
-        System.out.println(BotCredentialsReader.botUsernameReader());
         return BotCredentialsReader.botUsernameReader();
     }
 
     @Override
     public String getBotToken() {
-        System.out.println(BotCredentialsReader.botTokenReader());
         return BotCredentialsReader.botTokenReader();
     }
 
@@ -153,6 +151,9 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
             }
             stateMachines.get(chatID).handle(callBackQuery);
         }).accept(callBackQuery);
+        System.out.println(callBackQuery);
+        System.out.println("responseFprBackBtn = " + responseFprBackBtn);
+        System.out.println(settingsStorageDto);
     }
 
     private void executeMessage(SendMessage sendMessage) {
@@ -196,7 +197,6 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
 
         private void sendText() {
             SendMessage sendMessage = new SendMessage();
-
             sendMessage.setText(PrettyOutputForShowInfo.makeOutput(settingsStorageDto));
             sendMessage.setChatId(chatId);
 

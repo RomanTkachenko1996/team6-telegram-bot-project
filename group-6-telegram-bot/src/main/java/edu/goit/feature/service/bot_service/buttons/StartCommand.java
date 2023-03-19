@@ -1,16 +1,13 @@
-package edu.goit.feature.service.bot_service;
+package edu.goit.feature.service.bot_service.buttons;
 
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.send.SendVideo;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.File;
 
 public class StartCommand extends BotCommand {
 
@@ -21,7 +18,7 @@ public class StartCommand extends BotCommand {
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
         InlineKeyboardMarkup keyboard =  ButtonMarkups.createStartCommandMarkup();
         SendMessage sentStartingMessage = new SendMessage();
-        sentStartingMessage.setText("Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют");
+        sentStartingMessage.setText("Р›Р°СЃРєР°РІРѕ РїСЂРѕСЃРёРјРѕ. Р¦РµР№ Р±РѕС‚ РґРѕРїРѕРјРѕР¶Рµ РІС–РґСЃР»С–РґРєРѕРІСѓРІР°С‚Рё Р°РєС‚СѓР°Р»СЊРЅС– РєСѓСЂСЃРё РІР°Р»СЋС‚");
         sentStartingMessage.setChatId(Long.toString(chat.getId()));
         sentStartingMessage.setReplyMarkup(keyboard);
         try {

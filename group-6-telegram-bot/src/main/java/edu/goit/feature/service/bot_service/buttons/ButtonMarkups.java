@@ -1,4 +1,4 @@
-package edu.goit.feature.service.bot_service;
+package edu.goit.feature.service.bot_service.buttons;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -8,11 +8,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static edu.goit.feature.service.bot_service.ButtonsLists.*;
+import static edu.goit.feature.service.bot_service.buttons.ButtonsLists.*;
 
 public class ButtonMarkups {
     public static InlineKeyboardMarkup createAllCurrenciesButtonsMarkup() {
-        List<InlineKeyboardButton> listOfButtons = getAllCurrenciesBtns();
+        List<InlineKeyboardButton> listOfButtons = ButtonsLists.getAllCurrenciesBtns();
         return InlineKeyboardMarkup.builder()
                 .keyboard(Collections.singleton(listOfButtons))
                 .keyboardRow(getBackBtn())
@@ -47,6 +47,7 @@ public class ButtonMarkups {
                 .build();
     }
 
+
     public static InlineKeyboardMarkup createAllDigitsAfterCommaMarkup() {
         return InlineKeyboardMarkup.builder()
                 .keyboard(Collections.singleton(getAllDigitsAfterCommaBtns()))
@@ -64,7 +65,6 @@ public class ButtonMarkups {
                 .keyboardRow(getBackBtn())
                 .build();
     }
-    
     public static InlineKeyboardMarkup createStartCommandMarkup() {
         return InlineKeyboardMarkup.builder()
                 .keyboard(Collections.singleton(getShowInfoBtn()))

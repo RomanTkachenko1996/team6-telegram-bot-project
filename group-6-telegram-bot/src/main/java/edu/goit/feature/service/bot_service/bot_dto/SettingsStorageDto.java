@@ -1,4 +1,4 @@
-package edu.goit.feature.service.bot_service;
+package edu.goit.feature.service.bot_service.bot_dto;
 
 
 import edu.goit.feature.enums.Currency;

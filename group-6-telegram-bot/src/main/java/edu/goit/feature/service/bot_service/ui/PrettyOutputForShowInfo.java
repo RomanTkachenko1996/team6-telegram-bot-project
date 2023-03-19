@@ -1,4 +1,4 @@
-package edu.goit.feature.service.bot_service;
+package edu.goit.feature.service.bot_service.ui;
 
 import edu.goit.feature.Constants;
 import edu.goit.feature.currency_dto.CurrencyRateDto;
@@ -6,6 +6,7 @@ import edu.goit.feature.enums.Currency;
 import edu.goit.feature.service.bank_service.MonobankCurrencyService;
 import edu.goit.feature.service.bank_service.NBUCurrencyService;
 import edu.goit.feature.service.bank_service.PrivatBankCurrencyService;
+import edu.goit.feature.service.bot_service.bot_dto.SettingsStorageDto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -37,10 +38,10 @@ public class PrettyOutputForShowInfo {
                 .findFirst()
                 .orElseThrow()
                 .setScale(Integer.parseInt(digitsAfterDots), RoundingMode.HALF_EVEN);
-        String template = ("\uD83D\uDCC8  ÛÒ ${bank}\n\n" +
-                "\uD83D\uDCB0 ¬‡Î˛Ú‡ \u27A1\uFE0F ${currency}\n\n" +
-                "\uD83D\uDCCD œÓ‰‡Ê ${sale}\n" +
-                "\uD83D\uDCCD  ÛÔ≥‚Îˇ ${buy}")
+        String template = ("\uD83D\uDCC8 –ö—É—Ä—Å ${bank}\n\n" +
+                "\uD83D\uDCB0 –í–∞–ª—é—Ç–∞ \u27A1\uFE0F ${currency}\n\n" +
+                "\uD83D\uDCCD –ü—Ä–æ–¥–∞–∂ ${sale}\n" +
+                "\uD83D\uDCCD –ö—É–ø—ñ–≤–ª—è ${buy}")
                 .replace("${bank}",bank)
                 .replace("${currency}",String.valueOf(currency))
                 .replace("${sale}", sale.toString());
@@ -48,7 +49,7 @@ public class PrettyOutputForShowInfo {
         if (bank.equals(Constants.MONO_NAME_BTN) || bank.equals(Constants.PRIVAT_NAME_BTN)){
             return template.replace("${buy}",buy.toString());
         } else {
-            return template.replace("\uD83D\uDCCD  ÛÔ≥‚Îˇ ${buy}","");
+            return template.replace("\uD83D\uDCCD –ö—É–ø—ñ–≤–ª—è ${buy}","");
         }
     }
 }

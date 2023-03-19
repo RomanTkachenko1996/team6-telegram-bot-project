@@ -1,5 +1,7 @@
 package edu.goit.feature.service.statemachine;
 
+import edu.goit.feature.enums.State;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package edu.goit.feature.service.statemachine;
+package edu.goit.feature.enums;
 
 public enum State {
     idle,
