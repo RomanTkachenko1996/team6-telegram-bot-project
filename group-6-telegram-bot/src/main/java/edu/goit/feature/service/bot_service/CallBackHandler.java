@@ -13,10 +13,10 @@ import java.util.List;
 
 public class CallBackHandler {
 
-    // --------- <РІРёР±С–СЂ С‡Р°СЃСѓ РґР»СЏ РѕРЅРѕРІР»РµРЅСЊ>
+    // --------- <вибір часу для оновлень>
     public static EditMessageText handleTimeUpdatesSelection(Update update) {
         String callBackData = update.getCallbackQuery().getData();
-        String setText = "Р’РёР±РµСЂС–С‚СЊ С‡Р°СЃ РґР»СЏ РѕС‚СЂРёРјР°РЅРЅСЏ РѕРЅРѕРІР»РµРЅСЊ:";
+        String setText = "Виберіть час для отримання оновлень:";
         //creating a new list to update the keyboard
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
         //creating the keyboard to return to the user
@@ -62,8 +62,8 @@ public class CallBackHandler {
             case "17:00":
                 updateSelection("17:00", update, 6, 9, 2, 2, rows);
                 break;
-            case "Р’РёРјРєРЅСѓС‚Рё РїРѕРІС–РґРѕРјР»РµРЅРЅСЏ":
-                updateSelection("Р’РёРјРєРЅСѓС‚Рё РїРѕРІС–РґРѕРјР»РµРЅРЅСЏ", update, 9, 10, 0, 3, rows);
+            case "Вимкнути повідомлення":
+                updateSelection("Вимкнути повідомлення", update, 9, 10, 0, 3, rows);
                 break;
         }
         rows.add(ButtonsLists.getBackBtn());
@@ -71,11 +71,11 @@ public class CallBackHandler {
     }
 
 
-    // --------- </РІРёР±С–СЂ С‡Р°СЃСѓ РґР»СЏ РѕРЅРѕРІР»РµРЅСЊ>
+    // --------- </вибір часу для оновлень>
 
-    // --------- <РІРёР±С–СЂ Рє-СЃС‚С– Р·РЅР°РєРІС–РІ РїС–СЃР»СЏ РєРѕРјРё>
+    // --------- <вибір к-сті знаквів після коми>
     public static EditMessageText handleDigitsAfterCommaSelection(Update update) {
-        String setText = "Р’РёР±РµСЂС–С‚СЊ РєС–Р»СЊРєС–СЃС‚СЊ Р·РЅР°РєС–РІ РїС–СЃР»СЏ РєРѕРјРё:";
+        String setText = "Виберіть кількість знаків після коми:";
         String callBackData = update.getCallbackQuery().getData();
         String callBackText = update.getCallbackQuery().getMessage().getText();
         //creating the keyboard to return to the user
@@ -108,13 +108,13 @@ public class CallBackHandler {
         rows.add(ButtonsLists.getBackBtn()); // we do not forget about back brn
         keyboard.setKeyboard(rows);
     }
-    // --------- </РІРёР±С–СЂ Рє-СЃС‚С– Р·РЅР°РєРІС–РІ РїС–СЃР»СЏ РєРѕРјРё>
+    // --------- </вибір к-сті знаквів після коми>
 
-    // --------- <РІРёР±С–СЂ РІР°Р»СЋС‚Рё>
+    // --------- <вибір валюти>
 
     public static EditMessageText handleCurrencySelection(Update update) {
         String callBackData = update.getCallbackQuery().getData();
-        String setText = "Р’РёР±РµСЂС–С‚СЊ РІР°Р»СЋС‚Сѓ:";
+        String setText = "Виберіть валюту:";
         //creating the keyboard to return to the user
         InlineKeyboardMarkup keyboard = ButtonMarkups.createAllCurrenciesButtonsMarkup();
         //creating the list of all buttons we have, to store edited marked ("selected") buttons
@@ -130,11 +130,11 @@ public class CallBackHandler {
         String dollar = Currency.USD.name()+ " " + "\uD83C\uDDFA\uD83C\uDDF8";
         String buttonText;
         switch (callBackData) {
-            case "USD" -> {
+            case "USD" : {
                 buttonText = dollar + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
                 rowOfButtons.set(0, InlineKeyboardButton.builder().text(buttonText).callbackData(Currency.USD.name()).build());
             }
-            case "EUR" -> {
+            case "EUR" : {
                 buttonText = euro + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
                 rowOfButtons.set(1, InlineKeyboardButton.builder().text(buttonText).callbackData(Currency.EUR.name()).build());
             }
@@ -143,12 +143,12 @@ public class CallBackHandler {
         rows.add(ButtonsLists.getBackBtn());
         keyboard.setKeyboard(rows);
     }
-    // --------- </РІРёР±С–СЂ РІР°Р»СЋС‚Рё>
+    // --------- </вибір валюти>
 
-    // --------- <РІРёР±С–СЂ Р±Р°РЅРєСѓ>
+    // --------- <вибір банку>
     public static EditMessageText handleBankSelection(Update update) {
         String callBackData = update.getCallbackQuery().getData();
-        String setText = "Р’РёР±РµСЂС–С‚СЊ Р±Р°РЅРє:";
+        String setText = "Виберіть банк:";
         //creating a new list to update the keyboard
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
         //creating the keyboard to return to the user
@@ -168,51 +168,51 @@ public class CallBackHandler {
     private static void updateSelectedButtonsForBanks(Update update, String callBackData, InlineKeyboardMarkup keyboard, List<List<InlineKeyboardButton>> rows) {
         String buttonText;
         switch (callBackData) {
-            case "РњРѕРЅРѕР±Р°РЅРє" -> {
-                buttonText = "РњРѕРЅРѕР±Р°РЅРє" + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
-                rows.set(0, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("РњРѕРЅРѕР±Р°РЅРє").build()));
+            case "Монобанк": {
+                buttonText = "Монобанк" + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
+                rows.set(0, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("Монобанк").build()));
             }
-            case "РџСЂРёРІР°С‚Р‘Р°РЅРє" -> {
-                buttonText = "РџСЂРёРІР°С‚Р‘Р°РЅРє" + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
-                rows.set(1, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("РџСЂРёРІР°С‚Р‘Р°РЅРє").build()));
+            case "ПриватБанк": {
+                buttonText = "ПриватБанк" + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
+                rows.set(1, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("ПриватБанк").build()));
             }
-            case "РќР‘РЈ" -> {
-                buttonText = "РќР‘РЈ" + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
-                rows.set(2, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("РќР‘РЈ").build()));
+            case "НБУ": {
+                buttonText = "НБУ" + (update.getCallbackQuery().getMessage().getText().contains(" \u2705") ? "" : " \u2705");
+                rows.set(2, List.of(InlineKeyboardButton.builder().text(buttonText).callbackData("НБУ").build()));
             }
         }
         rows.add(ButtonsLists.getBackBtn());
         keyboard.setKeyboard(rows);
     }
 
-    // --------- </РІРёР±С–СЂ Р±Р°РЅРєСѓ>
+    // --------- </вибір банку>
     public static SendMessage handleStartCommand(Update update) {
         InlineKeyboardMarkup keyboard = ButtonMarkups.createStartCommandMarkup();
-        String setText = "Р›Р°СЃРєР°РІРѕ РїСЂРѕСЃРёРјРѕ. Р¦РµР№ Р±РѕС‚ РґРѕРїРѕРјРѕР¶Рµ РІС–РґСЃР»С–РґРєРѕРІСѓРІР°С‚Рё Р°РєС‚СѓР°Р»СЊРЅС– РєСѓСЂСЃРё РІР°Р»СЋС‚";
+        String setText = "Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют";
         return sendMessage(update, keyboard, setText);
     }
     public static SendMessage handleChooseBankBtn(Update update) {
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
         InlineKeyboardMarkup keyboard = ButtonMarkups.createAllBanksButtonsMarkup(rows);
-        String setText = "Р’РёР±РµСЂС–С‚СЊ Р±Р°РЅРє:";
+        String setText = "Виберіть банк:";
         return sendMessage(update, keyboard, setText);
     }
 
     public static SendMessage handleChooseTimeUpdatesBtn(Update update) {
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
         InlineKeyboardMarkup keyboard = ButtonMarkups.createAllTimeUpdatesButtonsMarkup(rows);
-        String setText = "Р’РёР±РµСЂС–С‚СЊ С‡Р°СЃ РґР»СЏ РѕС‚СЂРёРјР°РЅРЅСЏ РѕРЅРѕРІР»РµРЅСЊ:";
+        String setText = "Виберіть час для отримання оновлень:";
         return sendMessage(update, keyboard, setText);
     }
 
     public static SendMessage handleChooseDigitsAfterCommaBtn(Update update) {
         InlineKeyboardMarkup keyboard = ButtonMarkups.createAllDigitsAfterCommaMarkup();
-        String setText = "Р’РёР±РµСЂС–С‚СЊ РєС–Р»СЊРєС–СЃС‚СЊ Р·РЅР°РєС–РІ РїС–СЃР»СЏ РєРѕРјРё:";
+        String setText = "Виберіть кількість знаків після коми:";
         return sendMessage(update, keyboard, setText);
     }
 
     public static SendMessage handleChooseCurrencyBtn(Update update) {
-        String setText = "Р’РёР±РµСЂС–С‚СЊ РІР°Р»СЋС‚Сѓ:";
+        String setText = "Виберіть валюту:";
         InlineKeyboardMarkup keyboard = ButtonMarkups.createAllCurrenciesButtonsMarkup();
         return sendMessage(update, keyboard, setText);
     }
@@ -227,7 +227,7 @@ public class CallBackHandler {
     }
 
     public static SendMessage handleChooseSettingsBtn(Update update) {
-        String setText = "Р’РёР±РµСЂС–С‚СЊ РЅР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ:";
+        String setText = "Виберіть налаштування:";
         InlineKeyboardMarkup keyboard = ButtonMarkups.createAllSettingsButtonsMarkup();
         return sendMessage(update, keyboard, setText);
     }

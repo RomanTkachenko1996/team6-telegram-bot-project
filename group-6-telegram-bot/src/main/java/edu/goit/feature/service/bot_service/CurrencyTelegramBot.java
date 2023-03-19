@@ -19,6 +19,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -39,6 +40,8 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
 
     public CurrencyTelegramBot() {
         register(new StartCommand("start", "CurrencyTelegramBot started"));
+
+        settingsStorageDto = new SettingsStorageDto(Currency.USD, Constants.PRIVAT_NAME_BTN, "2", "9:00");
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         stateMachines = new ConcurrentHashMap<>();
     }
@@ -58,64 +61,86 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
     @SneakyThrows
     @Override
     public void processNonCommandUpdate(Update update) {
-
         String callBackQuery = update.getCallbackQuery().getData();
-        Map<String, Consumer<String>> mapButtons = Map.of(
-                Constants.SHOW_INFO_BTN.equals(callBackQuery), (value) -> {
-                    SendMessage message = CallBackHandler.handleShowInfoBtn(update, settingsStorageDto);
-                    executeMessage(message);
-                },
-                Constants.SETTINGS_BTN.equals(callBackQuery), (value) -> {
-                    responseFprBackBtn = update.getCallbackQuery().getData();
-                    SendMessage message = CallBackHandler.handleChooseSettingsBtn(update);
-                    executeMessage(message);
-                },
-                Constants.CHOOSE_BANK_BTN.equals(callBackQuery), (value) -> {
-                    responseFprBackBtn = update.getCallbackQuery().getData();
-                    SendMessage message = CallBackHandler.handleChooseBankBtn(update);
-                    executeMessage(message);
-                },
-                Constants.CHOOSE_CCY_BTN.equals(callBackQuery), (value) -> {
-                    responseFprBackBtn = update.getCallbackQuery().getData();
-                    SendMessage message = CallBackHandler.handleChooseCurrencyBtn(update);
-                    executeMessage(message);
-                },
-                Constants.TIME_UPDATES_BTN.equals(callBackQuery), (value) -> {
-                    responseFprBackBtn = update.getCallbackQuery().getData();
-                    SendMessage message = CallBackHandler.handleChooseTimeUpdatesBtn(update);
-                    executeMessage(message);
-                },
-                Constants.DIGITS_CCY_BTN.equals(callBackQuery), (value) -> {
-                    responseFprBackBtn = update.getCallbackQuery().getData();
-                    executeMessage(CallBackHandler.handleChooseDigitsAfterCommaBtn(update));
-                },
-                callBackQuery.equals(Currency.EUR.name()) || callBackQuery.equals(Currency.USD.name()), (value) -> {
-                    settingsStorageDto.setCurrency(Currency.valueOf(callBackQuery));
-                    executeEditMessageText(CallBackHandler.handleCurrencySelection(update));
-                },
-                Constants.PRIVAT_NAME_BTN.equals(callBackQuery)
-                || Constants.MONO_NAME_BTN.equals(callBackQuery)
-                || Constants.NBU_NAME_BTN.equals(callBackQuery), (value) -> {
-                    settingsStorageDto.setBank(callBackQuery);
-                    EditMessageText editMessageText = CallBackHandler.handleBankSelection(update);
-                    executeEditMessageText(editMessageText);
-                },
-                "2".equals(callBackQuery) || "3".equals(callBackQuery) || "4".equals(callBackQuery), (value) -> {
-                    settingsStorageDto.setDigitsAfterDots(callBackQuery);
-                    EditMessageText editMessageText = CallBackHandler.handleDigitsAfterCommaSelection(update);
-                    executeEditMessageText(editMessageText);
-                },
-                Constants.BACK_BTN.equals(callBackQuery), (value) -> {
-                    SendMessage message;
-                    if (responseFprBackBtn.equals(Constants.SETTINGS_BTN) || responseFprBackBtn.equals(Constants.BACK_BTN)){
-                        message = CallBackHandler.handleStartCommand(update);
-                    } else {
-                        message = HandleSettings.handleCallBack(update);
-                        responseFprBackBtn = update.getCallbackQuery().getData();
-                    }
-                    executeMessage(message);
-                }
-        );
+
+        Map<String, Consumer<String>> mapButtons = new HashMap<>();
+        mapButtons.put(Constants.SHOW_INFO_BTN, (value) -> {
+            SendMessage message = CallBackHandler.handleShowInfoBtn(update, settingsStorageDto);
+            executeMessage(message);
+        });
+        mapButtons.put(Constants.SETTINGS_BTN, (value) -> {
+            responseFprBackBtn = update.getCallbackQuery().getData();
+            SendMessage message = CallBackHandler.handleChooseSettingsBtn(update);
+            executeMessage(message);
+        });
+        mapButtons.put(Constants.CHOOSE_BANK_BTN, (value) -> {
+            responseFprBackBtn = update.getCallbackQuery().getData();
+            SendMessage message = CallBackHandler.handleChooseBankBtn(update);
+            executeMessage(message);
+        });
+        mapButtons.put(Constants.CHOOSE_CCY_BTN, (value) -> {
+            responseFprBackBtn = update.getCallbackQuery().getData();
+            SendMessage message = CallBackHandler.handleChooseCurrencyBtn(update);
+            executeMessage(message);
+        });
+        mapButtons.put(Constants.TIME_UPDATES_BTN, (value) -> {
+            responseFprBackBtn = update.getCallbackQuery().getData();
+            SendMessage message = CallBackHandler.handleChooseTimeUpdatesBtn(update);
+            executeMessage(message);
+        });
+        mapButtons.put(Constants.DIGITS_CCY_BTN, (value) -> {
+            responseFprBackBtn = update.getCallbackQuery().getData();
+            executeMessage(CallBackHandler.handleChooseDigitsAfterCommaBtn(update));
+        });
+        mapButtons.put(Currency.EUR.name(), (value) -> {
+            settingsStorageDto.setCurrency(Currency.valueOf(callBackQuery));
+            executeEditMessageText(CallBackHandler.handleCurrencySelection(update));
+        });
+        mapButtons.put(Currency.USD.name(), (value) -> {
+            settingsStorageDto.setCurrency(Currency.valueOf(callBackQuery));
+            executeEditMessageText(CallBackHandler.handleCurrencySelection(update));
+        });
+        mapButtons.put(Constants.PRIVAT_NAME_BTN, (value)  -> {
+            settingsStorageDto.setBank(callBackQuery);
+            EditMessageText editMessageText = CallBackHandler.handleBankSelection(update);
+            executeEditMessageText(editMessageText);
+        });
+        mapButtons.put(Constants.MONO_NAME_BTN, (value) -> {
+            settingsStorageDto.setBank(callBackQuery);
+            EditMessageText editMessageText = CallBackHandler.handleBankSelection(update);
+            executeEditMessageText(editMessageText);
+        });
+        mapButtons.put(Constants.NBU_NAME_BTN, (value) -> {
+            settingsStorageDto.setBank(callBackQuery);
+            EditMessageText editMessageText = CallBackHandler.handleBankSelection(update);
+            executeEditMessageText(editMessageText);
+        });
+        mapButtons.put("2", (value) -> {
+            settingsStorageDto.setDigitsAfterDots(callBackQuery);
+            EditMessageText editMessageText = CallBackHandler.handleDigitsAfterCommaSelection(update);
+            executeEditMessageText(editMessageText);
+        });
+        mapButtons.put("3", (value) -> {
+            settingsStorageDto.setDigitsAfterDots(callBackQuery);
+            EditMessageText editMessageText = CallBackHandler.handleDigitsAfterCommaSelection(update);
+            executeEditMessageText(editMessageText);
+        });
+        mapButtons.put("4", (value) -> {
+            settingsStorageDto.setDigitsAfterDots(callBackQuery);
+            EditMessageText editMessageText = CallBackHandler.handleDigitsAfterCommaSelection(update);
+            executeEditMessageText(editMessageText);
+        });
+        mapButtons.put(Constants.BACK_BTN, (value) -> {
+            SendMessage message;
+            if (responseFprBackBtn.equals(Constants.SETTINGS_BTN) || responseFprBackBtn.equals(Constants.BACK_BTN)){
+                message = CallBackHandler.handleStartCommand(update);
+            } else {
+                message = CallBackHandler.handleChooseSettingsBtn(update);
+                responseFprBackBtn = update.getCallbackQuery().getData();
+            }
+            executeMessage(message);
+        });
+
         Optional.ofNullable(mapButtons.get(callBackQuery)).orElse((value) -> {
             String chatID = String.valueOf(update.getCallbackQuery().getMessage().getChatId());
             EditMessageText editMessageText = CallBackHandler.handleTimeUpdatesSelection(update);
@@ -127,8 +152,7 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
                 stateMachine.addUser(new MessageUsers(chatID));
             }
             stateMachines.get(chatID).handle(callBackQuery);
-        });
-
+        }).accept(callBackQuery);
     }
 
     private void executeMessage(SendMessage sendMessage) {
@@ -173,7 +197,7 @@ public class CurrencyTelegramBot extends TelegramLongPollingCommandBot {
         private void sendText() {
             SendMessage sendMessage = new SendMessage();
 
-            //sendMessage.setText(text);
+            sendMessage.setText(PrettyOutputForShowInfo.makeOutput(settingsStorageDto));
             sendMessage.setChatId(chatId);
 
             try {
